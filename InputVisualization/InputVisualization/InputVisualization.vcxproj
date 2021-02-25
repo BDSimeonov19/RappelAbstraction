@@ -142,11 +142,13 @@
     <ClCompile Include="arrayDisplay.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainMenu.cpp" />
+    <ClCompile Include="stringDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arrayDisplay.h" />
     <ClInclude Include="Libraries.h" />
     <ClInclude Include="mainMenu.h" />
+    <ClInclude Include="stringDisplay.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

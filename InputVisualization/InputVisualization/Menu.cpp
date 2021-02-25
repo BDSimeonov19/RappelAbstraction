@@ -1,27 +1,30 @@
-#include "Libraries.h"
-#include "arrayDisplay.h"
-#include "stringDisplay.h"
-int choice;
+//=========================Libraries=========================
+
+#include <iostream>
+#include <Windows.h>
+#include <string>
+#include <conio.h>
+
+
+using namespace std;
+
 
 //=========================Functions=========================
 
-//Change choice in menu
-int menuChoosing()
+int menuChoosing(int choice)
 {
 	switch (_getch())
 	{
 	case 'w':
 		if (choice != 0)
 		{
-			choice -= 1;
-			return(choice);
+			return(choice - 1);
 		}
 		break;
 	case 's':
 		if (choice != 1)
-		{	
-			choice += 1;
-			return(choice);
+		{
+			return(choice + 1);
 		}
 		break;
 	case '\r':
@@ -34,43 +37,31 @@ int menuChoosing()
 void menu()
 {
 	HANDLE hdlOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	int option;
+	option = 0;
 	while (true)
 	{
-		cout << "Input Visualization\n";
-		cout << "Choose the data type you want to visualize:\n";
-		cout << "(Use w & s to move up and down. Press enter to select)\n";
-		if (choice == 0)
+		cout << "Input Visualization" << endl;
+		cout << "Choose the data type you want to visualize:" << endl;
+		if (option == 0)
 		{
 			SetConsoleTextAttribute(hdlOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		}
 		cout << "String" << endl;
 		SetConsoleTextAttribute(hdlOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-		if (choice == 1)
+		if (option == 1)
 		{
 			SetConsoleTextAttribute(hdlOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		}
 		cout << "Array" << endl;
 		SetConsoleTextAttribute(hdlOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-		if (menuChoosing() == 2)
+		option = menuChoosing(option);
+		if (option == 2)
 		{
 			system("cls");
 			break;
 		}
 		Sleep(100);
 		system("cls");
-	}
-}
-
-void checkChoice() 
-{
-	//User has chosen string
-	if (choice == 0) 
-	{
-		stringInput();
-	}
-	//User has chosen array
-	else if(choice == 1)
-	{
-		arraySize();
 	}
 }

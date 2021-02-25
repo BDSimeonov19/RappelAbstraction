@@ -1,21 +1,29 @@
-#include "arrayDisplay.h"
+#include "Libraries.h"
+
 int arr[1000];
 int arrSize;
 
+// To do
 void arrayPrompt() 
 {
-	
+
 }
+
+// Display current state of the array
 void arrayDisplay() 
 {
 	cout << "\tCurrent array\n";
 	for (int i = 0; i < arrSize; i++) 
 	{
-		cout << arr[i] << " ";
+		if (arr[i] != NULL)
+			cout << arr[i] << " ";
+		else
+			cout << "_ ";
 	}
 	cout << endl;
 }
 
+// Take size input from user
 void arraySize()
 {
 	cout << "Enter array size (Max: 1000) : ";
@@ -31,4 +39,3 @@ void arraySize()
 		arrayDisplay();
 	}
 }
-
