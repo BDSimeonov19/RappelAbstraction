@@ -11,7 +11,7 @@ void stringPrompt()
 // Display current state of the array
 void stringDisplay()
 {
-	cout << "\tCurrent array\n";
+	cout << "\tCurrent string\n";
 	for (size_t i = 0; i < str.length(); i++)
 	{
 		if (str[i] != NULL)

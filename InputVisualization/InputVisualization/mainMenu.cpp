@@ -34,6 +34,12 @@ int menuChoosing()
 void menu()
 {
 	HANDLE hdlOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hdlOut == INVALID_HANDLE_VALUE) 
+	{
+		cerr << "Encountered an Error: " << GetLastError();
+		Sleep(1000);
+		system("cls");
+	}
 	while (true)
 	{
 		cout << "Input Visualization\n";
