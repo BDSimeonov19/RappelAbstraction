@@ -3,24 +3,18 @@
 float arr[1000];
 int arrSize;
 int arrChoice = 0;
+int arrSortChoice = 0;
+bool arrFilled = false;
 
-void fillArray() 
-{
-	cout << "fill";
-}
+void fillArray();
 
-void sortArray()
-{
-	cout << "sort";
-}
-void minMaxArray()
-{
-	cout << "minMax";
-}
-void replaceIntArray()
-{
-	cout << "replace";
-}
+void sortArray();
+
+void minMaxArray();
+
+void replaceIntArray();
+
+//Check user choice
 void arrFunction() 
 {
 	switch (arrChoice) 
@@ -82,6 +76,7 @@ void arrayDisplay()
 	cout << "\n\n";
 }
 
+
 // Prompt to ask user what they want to do
 void arrayPrompt() 
 {
@@ -98,22 +93,22 @@ void arrayPrompt()
 		cout << "What do you want to do?\n";
 		if (arrChoice == 0)
 			SetConsoleTextAttribute(hdlOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << "1. Fill array\n";
+		cout << "Fill array\n";
 		SetConsoleTextAttribute(hdlOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 
 		if (arrChoice == 1)
 			SetConsoleTextAttribute(hdlOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << "2. Sort array\n";
+		cout << "Sort array\n";
 		SetConsoleTextAttribute(hdlOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 
 		if (arrChoice == 2)
 			SetConsoleTextAttribute(hdlOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << "3. Find min/max\n";
+		cout << "Find min/max\n";
 		SetConsoleTextAttribute(hdlOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 
 		if (arrChoice == 3)
 			SetConsoleTextAttribute(hdlOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << "4. Replace number\n";
+		cout << "Replace number\n";
 		SetConsoleTextAttribute(hdlOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 		if (arrayOption() == 4)
 		{
@@ -124,6 +119,7 @@ void arrayPrompt()
 		system("cls");
 	}
 }
+
 
 // Take size input from user
 void arraySize()
@@ -142,4 +138,186 @@ void arraySize()
 		system("cls");
 		arrayPrompt();
 	}
+}
+
+//========================ArrayFeatures========================
+
+//Fill array
+void fillArray()
+{
+	arrFilled = true;
+	for (int i = 0; i < arrSize; i++) {
+		system("cls");
+		arrayDisplay();
+		cout << "\n";
+		cout << "Input " << arrSize - i << " number(s) to be placed in the array.\n";
+		cin >> arr[i];
+	}
+	system("cls");
+	arrayPrompt();
+}
+
+// Sort array options
+int sortOption()
+{
+	switch (_getch())
+	{
+	case 'w':
+		if (arrSortChoice != 0)
+		{
+			arrSortChoice -= 1;
+			return(arrSortChoice);
+		}
+		break;
+	case 's':
+		if (arrSortChoice != 1)
+		{
+			arrSortChoice += 1;
+			return(arrSortChoice);
+		}
+		break;
+	case '\r':
+		return(2);
+		break;
+	}
+	return(arrSortChoice);
+}
+
+// Bubble sort
+void sorting(bool asc) {
+	// Sort ascending
+	if (asc) {
+		for (int i = 0; i < arrSize; i++) {
+			for (int j = 0; j < arrSize - i - 1; j++) {
+				if (arr[j] > arr[j + 1])
+				{
+					int temp;
+					temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+	}
+
+	// Sort descending
+	else {
+		for (int i = 0; i < arrSize; i++) {
+			for (int j = 0; j < arrSize - i - 1; j++) {
+				if (arr[j] < arr[j + 1])
+				{
+					int temp;
+					temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+	}
+
+	arrayPrompt();
+}
+
+// Sort choice check
+void sortFunction() {
+	switch (arrSortChoice)
+	{
+	case 0:
+		sorting(1);
+		break;
+	case 1:
+		sorting(0);
+		break;
+	}
+}
+
+// Sort array menu
+void sortArray() {
+	if (arrFilled == false) {
+		cout << "The array currently doesn't contain anything.\n";
+		system("pause");
+		system("cls");
+		arrayPrompt();
+	}
+
+	HANDLE hdlOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hdlOut == INVALID_HANDLE_VALUE)
+	{
+		cerr << "Encountered an Error: " << GetLastError();
+		Sleep(1000);
+		system("cls");
+	}
+	while (true)
+	{
+		arrayDisplay();
+		cout << "How do you want to sort your array?\n";
+		if (arrSortChoice == 0)
+			SetConsoleTextAttribute(hdlOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "Ascending order\n";
+		SetConsoleTextAttribute(hdlOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+
+		if (arrSortChoice == 1)
+			SetConsoleTextAttribute(hdlOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "Descending order\n";
+		SetConsoleTextAttribute(hdlOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+
+		if (sortOption() == 2)
+		{
+			system("cls");
+			sortFunction();
+			break;
+		}
+		system("cls");
+	}
+}
+
+// Find min/max
+void minMaxArray() {
+	if (arrFilled == false) {
+		cout << "The array currently doesn't contain anything.\n";
+		system("pause");
+		system("cls");
+		arrayPrompt();
+	}
+
+	float min = arr[0];
+	float max = arr[0];
+	for (int i = 0; i < arrSize; i++) {
+		if (arr[i] > max)
+			max = arr[i];
+		if (arr[i] < min)
+			min = arr[i];
+	}
+
+	cout << "The smallest value of the array is " << min << "\n";
+	cout << "The largest value of the array is " << max << "\n";
+	system("pause");
+	system("cls");
+	arrayPrompt();
+}
+
+// Replace in array
+void replaceIntArray() {
+	if (arrFilled == false) {
+		cout << "The array currently doesn't contain anything.\n";
+		system("pause");
+		system("cls");
+		arrayPrompt();
+	}
+
+	float replaced, replacing;
+	cout << "Choose which number to be replaced\n";
+	cin >> replaced;
+	system("cls");
+
+	cout << "Choose which number to replace with\n";
+	cin >> replacing;
+	system("cls");
+
+	for (int i = 0; i < arrSize; i++) {
+		if (arr[i] == replaced)
+			arr[i] = replacing;
+	}
+	
+	arrayPrompt();
 }
