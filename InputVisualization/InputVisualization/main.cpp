@@ -5,5 +5,4 @@
 int main() 
 {
 	menu();
-	checkChoice();
 }

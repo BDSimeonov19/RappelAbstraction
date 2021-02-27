@@ -142,7 +142,7 @@ void arraySize()
 
 //========================ArrayFeatures========================
 
-//Fill array
+// Fill array
 void fillArray()
 {
 	arrFilled = true;

@@ -30,6 +30,20 @@ int menuChoosing()
 	return(choice);
 }
 
+void checkChoice()
+{
+	//User has chosen string
+	if (choice == 0)
+	{
+		stringInput();
+	}
+	//User has chosen array
+	else if (choice == 1)
+	{
+		arraySize();
+	}
+}
+
 //Menu
 void menu()
 {
@@ -60,23 +74,10 @@ void menu()
 		if (menuChoosing() == 2)
 		{
 			system("cls");
+			checkChoice();
 			break;
 		}
 		Sleep(100);
 		system("cls");
-	}
-}
-
-void checkChoice() 
-{
-	//User has chosen string
-	if (choice == 0) 
-	{
-		stringInput();
-	}
-	//User has chosen array
-	else if(choice == 1)
-	{
-		arraySize();
 	}
 }
