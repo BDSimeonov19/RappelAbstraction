@@ -5,10 +5,9 @@ A team consisting of young programmers looking to give insight in an easily dige
 Our goal is simple: to make understanding arrays easier and more accessible for a wide diversity of people
 
 ### Instalation
-For those who are new to the programming scene, you just need 2 simple commands to clone the repo:
+For those who are new to the programming scene, you just need a simple command to clone the repo:
 
 ```
-git init
 git clone https://github.com/BDSimeonov19/RappelAbstraction.git
 ```
 
