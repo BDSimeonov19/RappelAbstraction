@@ -136,7 +136,7 @@ void insertStr() {
 	size_t pos;
 	string insertString;
 
-	cout << "Pick a starting position\n";
+	cout << "Pick a starting position (numbers only)\n";
 	cin >> pos;
 	system("cls");
 
@@ -162,7 +162,7 @@ void insertStr() {
 void eraseStr() {
 	size_t pos, len;
 
-	cout << "Pick a starting position\n";
+	cout << "Pick a starting position (numbers only)\n";
 	cin >> pos;
 	system("cls");
 
@@ -172,7 +172,7 @@ void eraseStr() {
 		system("cls");
 		replaceStr();
 	}
-	cout << "Pick a length to erase\n";
+	cout << "Pick a length to erase (numbers only)\n";
 	cin >> len;
 	system("cls");
 
@@ -197,7 +197,7 @@ void replaceStr() {
 	size_t pos, len;
 	string replaceString;
 
-	cout << "Pick a starting position\n";
+	cout << "Pick a starting position (numbers only)\n";
 	cin >> pos;
 	system("cls");
 
@@ -207,7 +207,7 @@ void replaceStr() {
 		system("cls");
 		replaceStr();
 	}
-	cout << "Pick a length to replace\n";
+	cout << "Pick a length to replace (numbers only)\n";
 	cin >> len;
 	system("cls");
 
@@ -233,7 +233,6 @@ void findStr() {
 
 	cout << "Input a string to find\n";
 
-	cin.ignore();
 	getline(cin, findString, '\n');
 
 	size_t search = str.find(findString);
